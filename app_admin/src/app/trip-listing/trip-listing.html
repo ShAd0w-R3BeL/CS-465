@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <a class="btn btn-primary mb-3" href="/add-trip">Add Trip</a>
+
+  <p>{{ message() }}</p>
+  <p>Trips loaded: {{ trips().length }}</p>
+
+  <div class="row">
+    @for (trip of trips(); track trip.code) {
+      <div class="col-md-4 mb-4">
+        <app-trip-card [trip]="trip"></app-trip-card>
+      </div>
+    }
+  </div>
+</div>
