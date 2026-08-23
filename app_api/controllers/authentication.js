@@ -1,0 +1,64 @@
+const passport = require('passport');
+const mongoose = require('mongoose');
+
+const User = mongoose.model('User');
+
+// POST: /api/register
+const register = async (req, res) => {
+    if (!req.body.name || !req.body.email || !req.body.password) {
+        return res.status(400).json({
+            message: 'All fields are required'
+        });
+    }
+
+    const user = new User();
+
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.setPassword(req.body.password);
+
+    try {
+        await user.save();
+
+        const token = user.generateJwt();
+
+        return res.status(200).json({
+            token
+        });
+    } catch (err) {
+        return res.status(400).json(err);
+    }
+};
+
+// POST: /api/login
+const login = (req, res, next) => {
+    if (!req.body.email || !req.body.password) {
+        return res.status(400).json({
+            message: 'All fields are required'
+        });
+    }
+
+    passport.authenticate(
+        'local',
+        (err, user, info) => {
+            if (err) {
+                return next(err);
+            }
+
+            if (user) {
+                const token = user.generateJwt();
+
+                return res.status(200).json({
+                    token
+                });
+            }
+
+            return res.status(401).json(info);
+        }
+    )(req, res, next);
+};
+
+module.exports = {
+    register,
+    login
+};
