@@ -1,14 +1,16 @@
 # 🐺 CS-465: Full Stack Development I
 
-## 🌙 Building the Travlr Getaways MEAN Stack Application
+## 🌙 Travlr Getaways MEAN Stack Application
 
 ---
 
 # 📌 Overview
 
-This repository contains the projects and assignments completed for **CS-465: Full Stack Development I** at **Southern New Hampshire University**.
+This repository contains my work for **CS-465: Full Stack Development I** at **Southern New Hampshire University**.
 
-Throughout this course, the Travlr Getaways website evolves from a static HTML website into a complete **MEAN stack** web application utilizing modern web development frameworks and database technologies.
+Throughout the course, I developed Travlr Getaways from a static HTML website into a full stack **MEAN application** using MongoDB, Express, Angular, and Node.js. The final application includes both a customer-facing website and an administrative single-page application (SPA).
+
+The customer-facing side uses Express and Handlebars to display travel information from the database. The administrator side uses Angular and allows an authorized user to add, edit, and delete trip information. The final version also includes login authentication using Passport and JSON Web Tokens (JWT).
 
 ---
 
@@ -22,179 +24,193 @@ Throughout this course, the Travlr Getaways website evolves from a static HTML w
 
 # 🛠 Tech Stack & Tools
 
-### Languages
+## Languages
 
 - JavaScript
+- TypeScript
 - HTML5
 - CSS3
+- JSON
 
-### Frameworks
+## Frameworks and Libraries
 
 - Node.js
 - Express.js
 - Handlebars (HBS)
-- Angular *(Modules 6–7)*
+- Angular
+- Bootstrap
+- Passport
+- JSON Web Token (JWT)
+- Express-JWT
 
-### Database
+## Database
 
 - MongoDB
-- Mongoose *(Modules 4–7)*
+- Mongoose
 
-### Development Tools
+## Development and Testing Tools
 
 - Git
 - GitHub
 - Visual Studio Code
 - Postman
 - MongoDB Compass
+- Angular CLI
 
-### Concepts
+## Concepts
 
 - MVC Architecture
 - RESTful APIs
-- Single Page Applications (SPA)
-- Authentication & Authorization
-- Database Design
+- CRUD Operations
+- Single Page Applications
+- Authentication and Authorization
+- JSON Data Exchange
+- NoSQL Database Design
 - Client/Server Development
+- Separation of Concerns
+- Reusable UI Components
 
 ---
 
-# 📂 Project Highlights
+# 📂 Project Development
 
 ## Module One — Environment Setup
 
-**Objective**
+The project began by setting up Node.js, npm, Express, Handlebars, Git, and GitHub. The original Travlr static website was added to the Express project and served through the Node.js server.
 
-Establish the full development environment and deploy the initial Express application.
+## Module Two — MVC Architecture
 
-**Completed**
+The Express application was reorganized using the MVC pattern. Routes, controllers, and views were separated so the application was easier to manage and maintain.
 
-- Installed Node.js and npm
-- Generated an Express application
-- Configured Handlebars
-- Imported the Travlr static website
-- Configured Express to serve static content
-- Connected the project to GitHub
-- Established Git workflow using module branches
+## Module Three — Dynamic Templates
 
-**Proof of Execution**
+The static travel page was converted into a Handlebars template. Trip information was stored in JSON and rendered dynamically instead of being hard-coded into the HTML.
 
-Successfully served the application through Express at:
+## Module Four — MongoDB and Mongoose
 
-```
-http://localhost:3000/index.html
-```
+MongoDB was added as the application database. Mongoose schemas and models were created for trip information, and sample trip data was seeded into the database.
 
----
+## Module Five — REST API
 
-## Future Modules
+Database access was separated into an `app_api` section. REST API endpoints were added to retrieve all trips and individual trips. The Express customer-facing website was then refactored to retrieve trip data through the API.
 
-### Module Two
+## Module Six — Angular SPA
 
-- MVC Routing
-- Controllers
-- Handlebars Views
+An Angular administrative SPA was added to the application. The admin interface uses reusable components and a data service to communicate with the REST API.
 
-### Module Three
+CRUD functionality was added for trip information:
 
-- JSON Data
-- Dynamic Templates
+- GET trips
+- POST new trips
+- PUT trip updates
+- DELETE trips
 
-### Module Four
+Bootstrap was used to style the administrator interface.
 
-- MongoDB Integration
-- Mongoose Models
-- Database Seeding
+## Module Seven — Security
 
-### Module Five
+Authentication and authorization were added to protect administrative functionality.
 
-- REST API Development
+The security implementation includes:
 
-### Module Six
+- User model with hashed passwords
+- Passport LocalStrategy
+- Login API
+- Registration API
+- JSON Web Tokens
+- Protected POST, PUT, and DELETE endpoints
+- Angular login form
+- JWT storage in the browser
+- Bearer token authentication for protected requests
 
-- Angular Single Page Application
-
-### Module Seven
-
-- Authentication
-- Security
-- User Management
+Public GET endpoints remain available without authentication.
 
 ---
 
-# 📖 Development Philosophy
+# 🏗 Architecture
 
-This project follows an iterative full stack development process.
+## Frontend Development
 
-Each module builds upon the previous implementation while maintaining clean organization, modular code, and source control through Git branches. Rather than rebuilding the application each week, functionality is progressively added as the application evolves from static pages into a database-driven web application.
+The project uses two different frontend approaches.
 
----
+The customer-facing website uses Express, Handlebars, HTML, CSS, and JavaScript. Express handles routing and controllers on the server, while Handlebars templates render the trip information returned by the application.
 
-# ⚖️ Academic Integrity & AI Disclosure
+The administrative side uses Angular as a single-page application. Angular separates the application into components, models, services, and routes. For example, separate components are used for the trip listing, trip cards, adding trips, editing trips, and login.
 
-**Academic Purpose**
+The SPA provides more interaction than the Express customer-facing pages because the administrator can perform database operations through the browser without building a completely separate server-rendered page for each action.
 
-This repository contains coursework completed for **Southern New Hampshire University**.
+JavaScript and TypeScript were used throughout the project, which helped keep the frontend and backend development similar while working with the MEAN stack.
 
-**AI Usage**
+## Why MongoDB Was Used
 
-Generative AI tools were used as supplemental aids for brainstorming, troubleshooting, and formatting. All implementation, verification, debugging, testing, and submitted work were reviewed and validated by the author in accordance with SNHU's academic integrity and AI usage policies. :contentReference[oaicite:0]{index=0}
+The backend uses MongoDB because it works well with the JSON-based data used throughout the application.
 
----
+Each trip can be stored as a document containing fields such as:
 
-# 🚀 Getting Started
+- Trip code
+- Name
+- Length
+- Start date
+- Resort
+- Price per person
+- Image
+- Description
 
-Clone the repository:
+MongoDB also works directly with Mongoose, which was used to create schemas and communicate between the Express application and the database.
 
-```bash
-git clone https://github.com/ShAd0w-R3BeL/CS-465.git
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the Express server:
-
-**PowerShell**
-
-```powershell
-$env:DEBUG="travlr:*"
-npm start
-```
-
-Open:
-
-```
-http://localhost:3000/index.html
-```
+Using a NoSQL database made it easy to retrieve MongoDB documents, return the information as JSON through the API, and use that data in both the Express website and Angular SPA.
 
 ---
 
-# 📁 Repository Structure
+# ⚙️ Functionality
 
-```
-travlr/
-│
-├── bin/
-├── node_modules/
-├── public/
-│   ├── css/
-│   ├── images/
-│   ├── *.html
-│
-├── routes/
-├── views/
-│
-├── app.js
-├── package.json
-├── README.md
-└── .gitignore
-```
+## JSON and JavaScript
+
+JavaScript is a programming language used to create application logic. It can contain functions, variables, objects, conditions, loops, and other programming features.
+
+JSON is a data format used to represent and exchange information. Although JSON looks similar to JavaScript objects, JSON itself is mainly used for storing and transferring data.
+
+JSON connects the frontend and backend of the Travlr application. MongoDB trip information is retrieved through Mongoose and returned by the REST API as JSON. Angular then receives the JSON and uses it to display trip information.
+
+Angular also sends JSON data back to the API when an administrator adds or updates a trip.
+
+## Refactoring
+
+The application was refactored several times during development.
+
+One of the first major changes was converting the original static HTML travel page into a Handlebars template. This allowed trip information to be generated dynamically instead of being repeated directly in the HTML.
+
+Another refactoring occurred when database access was moved from the Express website into the separate REST API. This created better separation between the customer-facing website, API, and database.
+
+The Angular application was also separated into reusable components. Instead of putting all of the trip display logic into one component, I created a trip card component that could be reused for each trip.
+
+The use of reusable components reduces repeated code and makes changes easier. If the design of a trip card changes, the component can be updated once instead of changing the same layout in several different places.
+
+Services were also used to separate API and authentication logic from the Angular components.
 
 ---
+
+# 🧪 Testing
+
+Testing was performed throughout the project using the browser, Postman, MongoDB Compass, and the application server logs.
+
+The REST API uses several HTTP methods:
+
+- **GET** retrieves information.
+- **POST** creates information.
+- **PUT** updates information.
+- **DELETE** removes information.
+
+Examples of the API endpoints include:
+
+```text
+GET    /api/trips
+GET    /api/trips/:tripCode
+POST   /api/trips
+PUT    /api/trips/:tripCode
+DELETE /api/trips/:tripCode
+POST   /api/register
+POST   /api/login
 
 # 🌙 Contact
 
